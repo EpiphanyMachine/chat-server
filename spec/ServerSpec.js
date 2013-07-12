@@ -38,19 +38,19 @@ function StubResponse() {
 
 describe("Node Server Request Listener Function", function() {
  it("Should answer GET requests for /classes/room", function() {
-   var req = new StubRequest("http://127.0.0.1:8080/classes/room1",
+   var req = new StubRequest("http://127.0.0.1:8081/classes/room1",
                              "GET");
    var res = new StubResponse();
 
    handler.handleRequest(req, res);
 
    expect(res._responseCode).toEqual(200);
-   expect(res._data).toEqual("[]");
+   expect(JSON.parse(res._data)).toEqual({results: []});
    expect(res._ended).toEqual(true);
  });
 
  it("Should accept posts to /classes/room", function() {
-   var req = new StubRequest("http://127.0.0.1:8080/classes/room1",
+   var req = new StubRequest("http://127.0.0.1:8081/classes/room1",
                              "POST",
                             {username: "Jono",
                              message: "Do my bidding!"});
@@ -68,7 +68,7 @@ describe("Node Server Request Listener Function", function() {
 
    // Now if we request the log for that room,
    // the message we posted should be there:
-   req = new StubRequest("http://127.0.0.1:8080/classes/room1",
+   req = new StubRequest("http://127.0.0.1:8081/classes/room1",
                              "GET");
    res = new StubResponse();
 
@@ -76,15 +76,17 @@ describe("Node Server Request Listener Function", function() {
 
    expect(res._responseCode).toEqual(200);
    var messageLog = JSON.parse(res._data);
-   expect(messageLog.length).toEqual(1);
-   expect(messageLog[0].username).toEqual("Jono");
-   expect(messageLog[0].message).toEqual("Do my bidding!");
+   console.log(res._data);
+   console.log(messageLog + 'iunbsrgiousbngiojbsrgibsgiubsdfgiubsgfiubsdgfiub');
+   expect(messageLog.results.length).toEqual(1);
+   expect(messageLog.results[0].username).toEqual("Jono");
+   expect(messageLog.results[0].message).toEqual("Do my bidding!");
    expect(res._ended).toEqual(true);
  });
 
 
  it("Should 404 when asked for a nonexistent file", function() {
-   var req = new StubRequest("http://127.0.0.1:8080/arglebargle",
+   var req = new StubRequest("http://127.0.0.1:8081/arglebargle",
                              "GET");
    var res = new StubResponse();
 

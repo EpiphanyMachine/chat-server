@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "roomsData.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "src/roomsData.coffee"
+  ],
+  "names": [],
+  "mappings": ";AACA;CAAA,CAAA,CAAmB,IAAZ,CAAP;;CAAA,CACA,CACE,IADK,CAAS;KAEZ;CAAA,CAAU,IAAV,EAAA,GAAA;CAAA,CACM,EAAN,EAAA,CADA;CAAA,CAEM,EAAN,EAAA,IAFA;MADF;CAFF,GAAA;;CAAA,CAOA,CAAe,CAAf,GAAO,EAAS;AACP,CAAP,GAAA,IAAA;CAA0B,CAAA,CAAe,CAAf,EAAA,CAAO;MAAjC;CACQ,GAAI,GAAL,IAAP;CATF,EAOe;CAPf"
+}
